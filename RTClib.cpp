@@ -207,6 +207,15 @@ TimeSpan DateTime::operator-(const DateTime& right) {
   return TimeSpan(unixtime()-right.unixtime());
 }
 
+bool DateTime::operator==(const DateTime& right){
+  return unixtime() == right.unixtime();
+}
+
+bool DateTime::operator!=(const DateTime& right){
+  return unixtime() != right.unixtime();
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // TimeSpan implementation
 
@@ -340,12 +349,13 @@ void RTC_DS1307::writenvram(uint8_t address, uint8_t data) {
 long RTC_Millis::offset = 0;
 
 void RTC_Millis::adjust(const DateTime& dt) {
-    offset = dt.unixtime() - millis() / 1000;
+  offset = dt.unixtime() - millis() / 1000;
 }
 
 DateTime RTC_Millis::now() {
   return (uint32_t)(offset + millis() / 1000);
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -433,7 +443,7 @@ void RTC_PCF8523::writeSqwPinMode(Pcf8523SqwPinMode mode) {
 
 boolean RTC_DS3231::begin(void) {
   Wire.begin();
-  return true;
+  return isRunning();
 }
 
 bool RTC_DS3231::lostPower(void) {
