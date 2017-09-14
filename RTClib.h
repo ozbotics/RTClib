@@ -111,7 +111,11 @@ class RTC_DS3231 : public RTC {
     boolean begin(void);
     void adjust(const DateTime& dt);
     DateTime now();
-    boolean isRunning(void) { return now().unixtime() != 2087399889; }
+    boolean isRunning(void) { 
+      //Serial.print("RTC_DS3231::isRunning ");
+      //Serial.println(now().unixtime());
+      return now().unixtime() != 2087399889; 
+    }
     
     bool lostPower(void);
     static Ds3231SqwPinMode readSqwPinMode();
