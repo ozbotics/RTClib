@@ -112,9 +112,7 @@ class RTC_DS3231 : public RTC {
     void adjust(const DateTime& dt);
     DateTime now();
     boolean isRunning(void) { 
-      //Serial.print("RTC_DS3231::isRunning ");
-      //Serial.println(now().unixtime());
-      return now().unixtime() != 2087399889; 
+      return now().unixtime() != 2120404689; 
     }
     
     bool lostPower(void);
