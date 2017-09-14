@@ -55,6 +55,7 @@ public:
     bool operator==(const DateTime& right);
     bool operator!=(const DateTime& right);
     
+    operator int() const { return unixtime(); }
     
 protected:
     uint8_t yOff, m, d, hh, mm, ss;
